@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 const saved_plans = [];
-
+const debug = Null;
 
 if (!OPENAI_API_KEY) {
     console.error("OPENAI_API_KEY is missing. Please set the environment variable.");
@@ -45,6 +45,7 @@ app.get("/api", async(req, res) =>{
 app.post('/saved', (req, res) => {
     try{
         saved_plans.push(req.body);
+        debug = req;
         console.log("Backend data: ", req.body);
         res.status(200).send({ message: 'Object saved successfully!' });
     } catch (error) {
@@ -53,9 +54,11 @@ app.post('/saved', (req, res) => {
     }
 });
 
+
 app.get('/get', (req,res) => {
     if(saved_plans) {
         res.json(saved_plans);
+        res.json(debug);
     }else{
         res.status(404).json({message: "No object found"});
     }
