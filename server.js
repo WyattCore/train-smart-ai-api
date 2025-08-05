@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 const saved_plans = [];
-const debug = Null;
+const debug = {};
 
 if (!OPENAI_API_KEY) {
     console.error("OPENAI_API_KEY is missing. Please set the environment variable.");
