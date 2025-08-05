@@ -12,11 +12,11 @@ app.use(cors());
 const saved_plans = [];
 
 
-if (!process.env.OPENAI_API_KEY) {
+if (!OPENAI_API_KEY) {
     console.error("OPENAI_API_KEY is missing. Please set the environment variable.");
     process.exit(1);
   }
-const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
+const openai = new OpenAI({apiKey: OPENAI_API_KEY});
 let input = ""
 
 
